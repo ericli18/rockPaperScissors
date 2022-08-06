@@ -35,7 +35,7 @@ function game(){
         let decision = playRound(playerChoice, "paper");
         let winner = decision.split(" ");
         if(winner[0] == "Tie."){
-            continue;
+            
         }
         else{
             if(winner[1] == "win,") playerPoints++;
