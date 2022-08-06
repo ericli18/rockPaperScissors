@@ -21,7 +21,7 @@ function playRound(playerChoice, computerChoice = "getComputerChoice()") {
     }
     else{
         if(computerChoice == "scissors") return "Tie. Both scissors" 
-        else if(computerChoice == "paper") return "You win, scissors cut paper" : 
+        else if(computerChoice == "paper") return "You win, scissors cut paper";
         else return "You lost, rock smashes scissors";
     }
 }
