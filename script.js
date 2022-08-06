@@ -32,8 +32,7 @@ function game(){
         let decision = playRound(playerChoice, getComputerChoice());
         let winner = decision.split(" ");
         if(winner[0] === "Tie."){
-            computerPoints++;
-            playerPoints++;
+            continue;
         }
         else{
             if(winner[1] == "win") playerPoints++;
@@ -42,6 +41,12 @@ function game(){
         console.log(`${decision} 
         Your points: ${playerPoints}
         Computer points: ${computerPoints}`)
+    }
+    if(playerPoints === computerPoints){
+        console.log("Tie!!")
+    }
+    else{
+        console.log(computerPoints>playerPoints? "You lost :(" : "You win!!!!")
     }
 }
 
