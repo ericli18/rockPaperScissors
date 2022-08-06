@@ -24,9 +24,23 @@ function playRound(playerChoice, computerChoice = "getComputerChoice()") {
 }
 
 function game(){
-    
+    let computerPoints = 0;
+    let playerPoints = 0;
     for(let i = 0; i < 5; i++)
     {
-
+        let playerChoice = prompt("Please type rock, paper, or scissors");
+        let decision = playRound(playerChoice, getComputerChoice());
+        let winner = split(decision);
+        if(winner[0] === "Tie."){
+            computerPoints++;
+            playerPoints++;
+        }
+        else{
+            if(winner[1] == "win") playerPoints++;
+            else computerPoints++;
+        }
+        console.log(`${decision} 
+        Your points: ${playerPoints}
+        Computer points: ${computerPoints}`)
     }
 }
