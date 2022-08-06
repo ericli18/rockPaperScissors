@@ -10,14 +10,15 @@ function playRound(playerChoice, computerChoice = "getComputerChoice()") {
     if(playerChoice != "rock" && playerChoice != "scissors" && playerChoice != "paper")
         return "Please enter valid input";
     if(playerChoice === "rock"){
-
+        return computerChoice == "rock"? "Tie. Both rock" : (computerChoice == "paper"? "You lost, paper smothers rock" : 
+        "You win, rock smashes scissors");
     }
     else if(playerChoice === "paper"){
 
     }
     else{
-        
+
     }
 }
 
-console.log(getComputerChoice());
+console.log(playRound("rock", "rock"));
