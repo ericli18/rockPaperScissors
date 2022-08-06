@@ -44,3 +44,5 @@ function game(){
         Computer points: ${computerPoints}`)
     }
 }
+
+game();
