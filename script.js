@@ -32,7 +32,7 @@ function game(){
     for(let i = 0; i < 5; i++)
     {
         let playerChoice = prompt("Please type rock, paper, or scissors");
-        let decision = playRound(playerChoice, "paper");
+        let decision = playRound(playerChoice, getComputerChoice());
         let winner = decision.split(" ");
         if(winner[0] == "Tie."){
             
