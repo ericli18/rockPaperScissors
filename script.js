@@ -14,11 +14,19 @@ function playRound(playerChoice, computerChoice = "getComputerChoice()") {
         "You win, rock smashes scissors");
     }
     else if(playerChoice === "paper"){
-
+        return computerChoice == "paper"? "Tie. Both paper" : (computerChoice == "rock"? "You win, paper smothers rock" : 
+        "You lost, scissors cut paper");
     }
     else{
-
+        return computerChoice == "scissors"? "Tie. Both scissors" : (computerChoice == "paper"? "You win, scissors cut paper" : 
+        "You lost, rock smashes scissors");
     }
 }
 
-console.log(playRound("rock", "rock"));
+function game(){
+    
+    for(let i = 0; i < 5; i++)
+    {
+
+    }
+}
