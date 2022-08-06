@@ -30,7 +30,7 @@ function game(){
     {
         let playerChoice = prompt("Please type rock, paper, or scissors");
         let decision = playRound(playerChoice, getComputerChoice());
-        let winner = split(decision);
+        let winner = decision.split(" ");
         if(winner[0] === "Tie."){
             computerPoints++;
             playerPoints++;
