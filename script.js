@@ -9,11 +9,11 @@ function playRound(playerChoice, computerChoice = "getComputerChoice()") {
     playerChoice = playerChoice.toLowerCase();
     if(playerChoice != "rock" && playerChoice != "scissors" && playerChoice != "paper")
         return "Please enter valid input";
-    if(playerChoice === "rock"){
+    if(playerChoice == "rock"){
         return computerChoice == "rock"? "Tie. Both rock" : (computerChoice == "paper"? "You lost, paper smothers rock" : 
         "You win, rock smashes scissors");
     }
-    else if(playerChoice === "paper"){
+    else if(playerChoice == "paper"){
         return computerChoice == "paper"? "Tie. Both paper" : (computerChoice == "rock"? "You win, paper smothers rock" : 
         "You lost, scissors cut paper");
     }
@@ -29,6 +29,7 @@ function game(){
     for(let i = 0; i < 5; i++)
     {
         let playerChoice = prompt("Please type rock, paper, or scissors");
+        console.log(playerChoice);
         let decision = playRound(playerChoice, getComputerChoice());
         let winner = decision.split(" ");
         if(winner[0] === "Tie."){
