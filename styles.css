@@ -74,3 +74,8 @@ img {
     justify-content: center;
 }
 
+.chosen {
+    scale: 1.1;
+    outline: 2px solid #04724D;
+    box-shadow: 0 0 10px #04724D;
+}
