@@ -5,7 +5,11 @@ function getComputerChoice() {
     return num%2? "paper" : "scissors";
 }
 
-function playRound(playerChoice, computerChoice = "getComputerChoice()") {
+function setComputerColor(){
+        
+}
+
+function playRound(playerChoice, computerChoice) {
     playerChoice = playerChoice.toLowerCase();
     if(playerChoice != "rock" && playerChoice != "scissors" && playerChoice != "paper")
         return "Please enter valid input";
@@ -17,7 +21,7 @@ function playRound(playerChoice, computerChoice = "getComputerChoice()") {
     else if(playerChoice == "paper"){
         if(computerChoice == "paper") return "Tie. Both paper" 
         else if(computerChoice == "rock") return "You win, paper smothers rock";
-        else return"You lost, scissors cut paper";
+        else return "You lost, scissors cut paper";
     }
     else{
         if(computerChoice == "scissors") return "Tie. Both scissors" 
@@ -26,7 +30,7 @@ function playRound(playerChoice, computerChoice = "getComputerChoice()") {
     }
 }
 
-function game(){
+function game(e){
     let computerPoints = 0;
     let playerPoints = 0;
 
@@ -42,11 +46,16 @@ function game(){
     console.log(`${decision} 
     Your points: ${playerPoints}
     Computer points: ${computerPoints}`)
-    if(playerPoints === computerPoints){
-        console.log("Tie!!")
-    }
-    else{
-        console.log(computerPoints>playerPoints? "You lost :(" : "You win!!!!")
-    }
+
 }
+
+function showModal(winner){
+
+}
+
+const rockButton = document.querySelector('.player-side .rock');
+rockButton.addEventListener('click', function(e){
+    console.log(this.classList[0]);
+});
+
 
