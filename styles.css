@@ -3,9 +3,22 @@ html, body {
     margin: 0;
 }
 
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
 .scores {
     width: 100%;
     height: 40vh;
     margin: 0;
     background-color: red;
+}
+
+.footer {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #6B9AC4;
 }
