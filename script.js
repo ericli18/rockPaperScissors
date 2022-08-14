@@ -1,3 +1,8 @@
+const rockButton = document.querySelector('.player-side .rock');
+const paperButton = document.querySelector('.player-side .paper');
+const scissorsButton = document.querySelector('.player-side .scissors');
+let playerChoice;
+
 function getComputerChoice() {
     let num = Math.floor(Math.random() * 3);
     if(!num) return "rock";
@@ -7,11 +12,51 @@ function getComputerChoice() {
 
 function setComputerColor(computerChoice){
     const setButton = document.querySelector(`.computer-side .${computerChoice}`);
-    setButton.classList.add('chosen');
+    setButton.classList.add('chosen-computer');
 }
 
-function playRound(playerChoice, computerChoice) {
-    playerChoice = playerChoice.toLowerCase();
+function setPlayerColor(playerChoice){
+    const setButton = document.querySelector(`.player-side .${playerChoice}`);
+    setButton.classList.add('chosen-player');
+}
+
+function removeColors(){
+    const buttons = document.querySelectorAll('img');
+    buttons.forEach(button => {
+        button.classList.remove('chosen-computer');
+        button.classList.remove('chosen-player');
+    });
+}
+
+function removePlayerColor() {
+    const buttons = document.querySelectorAll('.player-side img');
+    buttons.forEach(button => {
+        button.classList.remove('chosen-player');
+    });
+}
+
+function changeChoice(choice) {
+    removePlayerColor();
+    playerChoice = choice;
+    setPlayerColor(playerChoice);
+}
+
+function checkButtons()
+{
+    rockButton.addEventListener('click', function(e){
+        changeChoice('rock');
+    });
+    paperButton.addEventListener('click', function(e){
+        changeChoice('paper');
+    });
+    scissorsButton.addEventListener('click', function(e){
+        changeChoice('scissors');
+    });
+}
+
+function playRound() {
+    let computerChoice = getComputerChoice()
+    setComputerColor(computerChoice);
     if(playerChoice != "rock" && playerChoice != "scissors" && playerChoice != "paper")
         return "Please enter valid input";
     if(playerChoice == "rock"){
@@ -31,12 +76,11 @@ function playRound(playerChoice, computerChoice) {
     }
 }
 
-function game(e){
+function game(){
     let computerPoints = 0;
     let playerPoints = 0;
 
-    let playerChoice = prompt("Please type rock, paper, or scissors");
-    let decision = playRound(playerChoice, getComputerChoice());
+    let decision = checkButtons();
     let winner = decision.split(" ");
     if(winner[0] == "Tie."){        
     }
@@ -54,22 +98,18 @@ function showModal(winner){
 
 }
 
-const rockButton = document.querySelector('.player-side .rock');
-rockButton.addEventListener('click', function(e){
-    console.log(this.classList[0]);
+
+
+
+window.addEventListener('keydown', function(e){
+    removeColors();
 });
 
-const paperButton = document.querySelector('.player-side .paper');
-paperButton.addEventListener('click', function(e){
-    console.log(this.classList[0]);
-});
+console.log(checkButtons());
+/*
+    On button click 
+*/
 
-const scissorsButton = document.querySelector('.player-side .scissors');
-scissorsButton.addEventListener('click', function(e){
-    console.log(this.classList[0]);
-});
-
-setComputerColor('rock');
 
 
 
