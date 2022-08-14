@@ -67,7 +67,7 @@ img {
     outline: 8px solid black;
     background-color: #F8FAF0;
     width: 20%;
-    transition: all .07s ease;
+    transition: all .5s ease;
 }
 
 .img-container{
@@ -75,8 +75,14 @@ img {
     justify-content: center;
 }
 
-.chosen {
+.chosen-computer {
     scale: 1.1;
-    outline: 2px solid #04724D;
-    box-shadow: 0 0 10px #04724D;
+    outline: 6px solid #996888;
+    box-shadow: 0 0 30px #996888;
+}
+
+.chosen-player {
+    scale: 1.1;
+    outline: 6px solid #04724D;
+    box-shadow: 0 0 30px #04724D;
 }

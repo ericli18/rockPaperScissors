@@ -5,8 +5,9 @@ function getComputerChoice() {
     return num%2? "paper" : "scissors";
 }
 
-function setComputerColor(){
-        
+function setComputerColor(computerChoice){
+    const setButton = document.querySelector(`.computer-side .${computerChoice}`);
+    setButton.classList.add('chosen');
 }
 
 function playRound(playerChoice, computerChoice) {
@@ -57,5 +58,19 @@ const rockButton = document.querySelector('.player-side .rock');
 rockButton.addEventListener('click', function(e){
     console.log(this.classList[0]);
 });
+
+const paperButton = document.querySelector('.player-side .paper');
+paperButton.addEventListener('click', function(e){
+    console.log(this.classList[0]);
+});
+
+const scissorsButton = document.querySelector('.player-side .scissors');
+scissorsButton.addEventListener('click', function(e){
+    console.log(this.classList[0]);
+});
+
+setComputerColor('rock');
+
+
 
 
