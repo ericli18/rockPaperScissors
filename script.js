@@ -2,6 +2,7 @@ const rockButton = document.querySelector('.player-side .rock');
 const paperButton = document.querySelector('.player-side .paper');
 const scissorsButton = document.querySelector('.player-side .scissors');
 let playerChoice;
+let playable = false;
 
 function getComputerChoice() {
     let num = Math.floor(Math.random() * 3);
@@ -39,6 +40,11 @@ function changeChoice(choice) {
     removePlayerColor();
     playerChoice = choice;
     setPlayerColor(playerChoice);
+    if(playable == false)
+    {
+        playable = true;
+        game();
+    }
 }
 
 function checkButtons()
@@ -80,7 +86,8 @@ function game(){
     let computerPoints = 0;
     let playerPoints = 0;
 
-    let decision = checkButtons();
+    console.log('hello');
+    let decision = playRound();
     let winner = decision.split(" ");
     if(winner[0] == "Tie."){        
     }
@@ -90,8 +97,16 @@ function game(){
     }
     console.log(`${decision} 
     Your points: ${playerPoints}
-    Computer points: ${computerPoints}`)
+    Computer points: ${computerPoints}`);
+    updateText(computerPoints, playerPoints);
+}
 
+function updateText(computerPoints, playerPoints) 
+{
+    const playerScore = document.querySelector('.calc-player');
+    const computerScore = document.querySelector('.calc-computer');
+    playerScore.textContent = playerPoints;
+    computerScore.textContent = computerPoints;
 }
 
 function showModal(winner){
@@ -109,8 +124,6 @@ console.log(checkButtons());
 /*
     On button click 
 */
-
-
 
 
 
