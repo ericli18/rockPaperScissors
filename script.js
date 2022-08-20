@@ -1,6 +1,7 @@
 const rockButton = document.querySelector('.player-side .rock');
 const paperButton = document.querySelector('.player-side .paper');
 const scissorsButton = document.querySelector('.player-side .scissors');
+const playButton = document.querySelector('.decider-text button');
 let playerChoice;
 let playable = false;
 
@@ -43,7 +44,7 @@ function changeChoice(choice) {
     if(playable == false)
     {
         playable = true;
-        game();
+        startGame();
     }
 }
 
@@ -82,23 +83,34 @@ function playRound() {
     }
 }
 
-function game(){
+function startGame() {
     let computerPoints = 0;
     let playerPoints = 0;
+    playButton.addEventListener('click', () =>
+    {
+        if(playerPoints < 5 && computerPoints < 5)
+        {
+            console.log('hello');
+            let decision = playRound();
+            let winner = decision.split(" ");
+            if(winner[0] == "Tie."){        
+            }
+            else{
+                if(winner[1] == "win,") playerPoints++;
+                else computerPoints++;
+            }
+            console.log(`${decision} 
+            Your points: ${playerPoints}
+            Computer points: ${computerPoints}`);
+            updateText(computerPoints, playerPoints);
+        }
+    })
+}
 
-    console.log('hello');
-    let decision = playRound();
-    let winner = decision.split(" ");
-    if(winner[0] == "Tie."){        
-    }
-    else{
-        if(winner[1] == "win,") playerPoints++;
-        else computerPoints++;
-    }
-    console.log(`${decision} 
-    Your points: ${playerPoints}
-    Computer points: ${computerPoints}`);
-    updateText(computerPoints, playerPoints);
+function game(computerPoints, playerPoints){
+
+
+    
 }
 
 function updateText(computerPoints, playerPoints) 
@@ -120,7 +132,7 @@ window.addEventListener('keydown', function(e){
     removeColors();
 });
 
-console.log(checkButtons());
+checkButtons();
 /*
     On button click 
 */
