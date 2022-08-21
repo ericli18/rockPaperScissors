@@ -142,7 +142,7 @@ function updateText(computerPoints, playerPoints)
 }
 
 function showModal(winner){
-
+    
 }
 
 
