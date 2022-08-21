@@ -59,6 +59,8 @@ html, body {
     flex: 1;
     font-size: 52px;
     display: flex;
+    text-align: center;
+    gap: 32px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
