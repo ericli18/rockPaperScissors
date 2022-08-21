@@ -88,7 +88,7 @@ function playRound() {
 function startGame() {
     let computerPoints = 0;
     let playerPoints = 0;
-    let wins = 1;
+    let wins = 5;
     playButton.addEventListener('click', () =>
     {
         if(playerPoints < wins && computerPoints < wins)
@@ -116,7 +116,7 @@ function startGame() {
                 }
                 if(computerPoints == wins || playerPoints == wins)
                 {
-                    showModal();
+                    showModal(playerPoints > computerPoints);
                 }
                 updateText(computerPoints, playerPoints);
             }
@@ -152,11 +152,20 @@ function updateText(computerPoints, playerPoints)
     computerScore.textContent = computerPoints;
 }
 
-function showModal(winner = "hi"){
+function showModal(winner){
 
     const modal = document.getElementById('modal');
     modal.classList.add('active');
     overlay.classList.add('active');
+    const modalBody = document.getElementById('body-content');
+    if(winner)
+    {
+        modalBody.innerText = "You win!!!"
+    }
+    else
+    {
+        modalBody.innerText = "You lost :("
+    }
 
     closeModalButtons.forEach(button => {
         button.addEventListener('click', () => {
