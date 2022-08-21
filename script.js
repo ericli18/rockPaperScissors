@@ -4,6 +4,7 @@ const scissorsButton = document.querySelector('.player-side .scissors');
 const playButton = document.querySelector('.decider-text button');
 let playerChoice;
 let playable = false;
+let buttonStatus = true;
 
 function getComputerChoice() {
     let num = Math.floor(Math.random() * 3);
@@ -22,11 +23,10 @@ function setPlayerColor(playerChoice){
     setButton.classList.add('chosen-player');
 }
 
-function removeColors(){
-    const buttons = document.querySelectorAll('img');
+function removeComputerColor(){
+    const buttons = document.querySelectorAll('.computer-side img');
     buttons.forEach(button => {
         button.classList.remove('chosen-computer');
-        button.classList.remove('chosen-player');
     });
 }
 
@@ -90,27 +90,42 @@ function startGame() {
     {
         if(playerPoints < 5 && computerPoints < 5)
         {
-            console.log('hello');
-            let decision = playRound();
-            let winner = decision.split(" ");
-            if(winner[0] == "Tie."){        
+            if(buttonStatus)
+            {
+                buttonStatus = false;
+                console.log('hello');
+                let decision = playRound();
+                updateMiddle(decision);
+                let winner = decision.split(" ");
+                if(winner[0] == "Tie."){        
+                }
+                else{
+                    if(winner[1] == "win,") playerPoints++;
+                    else computerPoints++;
+                }
+                console.log(`${decision} 
+                Your points: ${playerPoints}
+                Computer points: ${computerPoints}`);
+                updateText(computerPoints, playerPoints);
             }
-            else{
-                if(winner[1] == "win,") playerPoints++;
-                else computerPoints++;
+            else
+            {
+                buttonStatus = true;
+                playButton.innerText = "Play";
+                removeComputerColor();
+                const middle = document.querySelector('.decider-text .display');
+                middle.innerText = "";
             }
-            console.log(`${decision} 
-            Your points: ${playerPoints}
-            Computer points: ${computerPoints}`);
-            updateText(computerPoints, playerPoints);
         }
     })
 }
 
-function game(computerPoints, playerPoints){
-
-
-    
+function updateMiddle(message)
+{
+    const middle = document.querySelector('.decider-text .display');
+    middle.innerText = message;
+    middle.style.color = "red";
+    playButton.innerText = "Continue"
 }
 
 function updateText(computerPoints, playerPoints) 
@@ -129,7 +144,7 @@ function showModal(winner){
 
 
 window.addEventListener('keydown', function(e){
-    removeColors();
+    removeComputerColor();
 });
 
 checkButtons();
