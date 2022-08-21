@@ -2,6 +2,8 @@ const rockButton = document.querySelector('.player-side .rock');
 const paperButton = document.querySelector('.player-side .paper');
 const scissorsButton = document.querySelector('.player-side .scissors');
 const playButton = document.querySelector('.decider-text button');
+const closeModalButtons = document.querySelectorAll('[data-close-button]');
+const overlay = document.getElementById('overlay');
 let playerChoice;
 let playable = false;
 let buttonStatus = true;
@@ -86,9 +88,10 @@ function playRound() {
 function startGame() {
     let computerPoints = 0;
     let playerPoints = 0;
+    let wins = 1;
     playButton.addEventListener('click', () =>
     {
-        if(playerPoints < 5 && computerPoints < 5)
+        if(playerPoints < wins && computerPoints < wins)
         {
             if(buttonStatus)
             {
@@ -111,18 +114,26 @@ function startGame() {
                     }
 
                 }
+                if(computerPoints == wins || playerPoints == wins)
+                {
+                    showModal();
+                }
                 updateText(computerPoints, playerPoints);
             }
             else
             {
-                buttonStatus = true;
-                playButton.innerText = "Play";
-                removeComputerColor();
-                const middle = document.querySelector('.decider-text .display');
-                middle.innerText = "";
+                clearMiddle();
             }
         }
-    })
+    });
+}
+
+function clearMiddle() {
+    buttonStatus = true;
+    playButton.innerText = "Play";
+    removeComputerColor();
+    const middle = document.querySelector('.decider-text .display');
+    middle.innerText = "";
 }
 
 function updateMiddle(message, winner)
@@ -141,8 +152,28 @@ function updateText(computerPoints, playerPoints)
     computerScore.textContent = computerPoints;
 }
 
-function showModal(winner){
-    
+function showModal(winner = "hi"){
+
+    const modal = document.getElementById('modal');
+    modal.classList.add('active');
+    overlay.classList.add('active');
+
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.modal');
+            closeModal(modal);
+            startGame();
+            updateText(0, 0);
+            removeComputerColor();
+            clearMiddle();
+        });
+    });
+}
+
+function closeModal(modal)
+{
+    modal.classList.remove('active');
+    overlay.classList.remove('active');
 }
 
 
