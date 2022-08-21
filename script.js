@@ -93,19 +93,24 @@ function startGame() {
             if(buttonStatus)
             {
                 buttonStatus = false;
-                console.log('hello');
                 let decision = playRound();
-                updateMiddle(decision);
                 let winner = decision.split(" ");
-                if(winner[0] == "Tie."){        
+                if(winner[0] == "Tie."){       
+                    updateMiddle(decision, 2); 
                 }
                 else{
-                    if(winner[1] == "win,") playerPoints++;
-                    else computerPoints++;
+                    if(winner[1] == "win,") 
+                    {
+                        playerPoints++;
+                        updateMiddle(decision, 1);
+                    }
+                    else 
+                    {
+                        computerPoints++;
+                        updateMiddle(decision, 0);
+                    }
+
                 }
-                console.log(`${decision} 
-                Your points: ${playerPoints}
-                Computer points: ${computerPoints}`);
                 updateText(computerPoints, playerPoints);
             }
             else
@@ -120,11 +125,11 @@ function startGame() {
     })
 }
 
-function updateMiddle(message)
+function updateMiddle(message, winner)
 {
     const middle = document.querySelector('.decider-text .display');
     middle.innerText = message;
-    middle.style.color = "red";
+    middle.style.color = winner == 0? "#996888" : winner == 1? "#04724D" : "black";
     playButton.innerText = "Continue"
 }
 
