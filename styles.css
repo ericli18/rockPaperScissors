@@ -40,7 +40,7 @@ html, body {
 }
 
 .main {
-    background-color: #EFF6E0;
+    background-color: black;
     display: flex;
     justify-content: space-around;
 }
